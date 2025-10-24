@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:medicall/widgets/contact_item.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,36 +23,51 @@ class HomePage extends StatelessWidget {
         ],
         leading: Icon(Icons.menu),
       ),
-      body: ListView(
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-            child: TextField(
-              decoration: InputDecoration(
-                fillColor: Colors.grey.shade200,
-                filled: true,
-                prefixIcon: Icon(Icons.search),
-                hintText: "Search hospital or address",
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
-                  borderSide: BorderSide.none,
-                ),
+      body: DefaultTabController(
+        length: 2,
+        
+        child: Column(
+            children: [
+              TabBar(tabs: [
+                Tab(text: "Map"),
+                Tab(text: "List")
+              ]),
+              Expanded(child: 
+              TabBarView(children: [_buildMapView(), _buildListView()],
               ),
-            ),
+              )
 
+            ],
+           
+          
+              ),
           ),
-          //Widget for image
-          Padding(
-            padding: EdgeInsetsGeometry.all(16),
-            child: Image.asset(
-              "assets/map.png",
-              width: MediaQuery.sizeOf(context).width * 0.8,
-              height: MediaQuery.sizeOf(context).height * 0.8,
-              fit: BoxFit.cover,
-            ),
-            ),
-        ],
-      ),
+        );
+  
+  }
+
+  Widget _buildListView() {
+  return ListView(
+    children: [
+      ContactItem(),
+      ContactItem(),
+      ContactItem(),
+    ],
+  );
+}
+
+ Widget _buildMapView() {
+    return ListView(
+      children: [
+        Image.asset(
+          "assets/map.png",
+         width: MediaQuery.sizeOf(context).width * 0.8,
+          height: MediaQuery.sizeOf(context).height * 1,
+          fit: BoxFit.cover,
+        ),
+      ],
     );
   }
 }
+
+ 

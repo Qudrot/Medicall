@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:medicall/bottom_navigation.dart';
+import 'package:medicall/pages/forgot_password.dart';
 import 'package:medicall/pages/login_page.dart';
 import 'package:medicall/pages/onboarding_page.dart';
+import 'package:medicall/pages/signup_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,16 +19,20 @@ class MyApp extends StatelessWidget {
       title: 'Save A Life',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+        //textTheme: 
       ),
 
       debugShowCheckedModeBanner: false,
 
       routes: {
-        "/": (context) => OnboardingPage(),
+        "/o": (context) => OnboardingPage(),
         "/home": (context) => BottomNavigation(),
-        "/login": (context) => LoginPage()
+        "/login": (context) => LoginPage(),
+        "/signup": (context) => SignupPage(),
+        "/forgot": (context) => ForgotPasswordPage(),
+        
       },
-      initialRoute: "/login",
+      initialRoute: "/home",
 
       // home: BottomNavigation()
     );

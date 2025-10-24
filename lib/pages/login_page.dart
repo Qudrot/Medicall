@@ -1,9 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:medicall/widgets/custom_button.dart';
+import 'package:medicall/widgets/custom_textfield.dart';
+import 'package:medicall/widgets/password_textfield.dart';
+import 'package:medicall/widgets/signup_login_bottom_text.dart';
+import 'package:medicall/widgets/signup_login_text.dart';
+import 'package:medicall/widgets/social_icon.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
+
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  //var regMail = ["kay@gmail.com", "yes@gmail.com"];
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -14,117 +33,59 @@ class LoginPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             SizedBox(height: 120),
-            Text(
-              "Get Started",
-              textAlign: TextAlign.center,
-              style: GoogleFonts.playfairDisplay(
-                fontSize: 24,
-                fontWeight: FontWeight.w700,
-                color: Colors.blueAccent,
-              ),
-            ),
-            Text(
-              "Register your details below",
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 16),
+            SigninLoginHeading(
+              heading: "Welcome back",
+              subheading: "Glad to see you again!",
             ),
             SizedBox(height: 32),
-            TextField(
-              decoration: InputDecoration(
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                labelText: "Email",
-              ),
+            CustomTextField(
+              label: "Email",
+              textEditingController: emailController,
             ),
             SizedBox(height: 16),
-            TextField(
-              decoration: InputDecoration(
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                labelText: "Password",
-              ),
-              obscureText: true,
+            PasswordTextField(
+              label: "Password",
+              textEditingController: passwordController,
             ),
             SizedBox(height: 16),
-            ElevatedButton(onPressed: () {}, child: Text("Login")),
+            CustomButton(
+              text: "Login",
+              onPressed: () {
+                if (emailController.text != "kay@gmail.com") {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text("Not a registered email")),
+                  );
+                  return;
+                }
 
-            SizedBox(height: 40),
+                if (passwordController.text != "23456") {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text("Not a valid password, Try agin")),
+                  );
 
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Expanded(
-                  child: Divider(color: Colors.grey.shade200, thickness: 2, height: 10),
-                ),
+                  //showDialog(context: context, builder: (context) {
+                  //return AlertDialog(
+                  //content: Text("Not a valid Password try again"),
+                  //actions: [],
+                  //);
+                  //});
 
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20),
-                  child: Text(
-                    "Or Login with",
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.normal,
-                      color: Colors.black,
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: Divider(color: Colors.grey.shade200, thickness: 2, height: 10),
-                ),
-              ],
+                  return;
+                }
+                Navigator.of(context).pushReplacementNamed("/home");
+              },
             ),
-
-            SizedBox(height: 20),
-
-            _socialIcons(),
+            SizedBox(height: 24),
+            SocialIcons(text: "Log in using"),
+            SizedBox(height: 36),
+            SignupLoginBottom(
+              text: "Don't have an account? ",
+              pageRoute: "/signup",
+              router: "Sign up",
+            ),
           ],
         ),
       ),
     );
   }
-}
-
-Row _socialIcons() {
-  return Row(
-    mainAxisAlignment: MainAxisAlignment.center,
-    children: [
-      Container(
-        width: 80,
-        height: 48,
-        padding: const EdgeInsets.all(4),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(4),
-          color: Colors.grey.shade100,
-          border: Border.all(color: Colors.grey.shade300, width: 1)
-        ),
-        child: Image.asset("assets/facebook.png"),
-      ),
-      SizedBox(width: 16),
-      Container(
-        width: 80,
-        height: 48,
-        padding: const EdgeInsets.all(4),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(4),
-          color: Colors.grey.shade100,
-          border: Border.all(color: Colors.grey.shade300, width: 1)
-        ),
-        child: Image.asset("assets/instagram.png"),
-      ),
-      SizedBox(width: 16),
-      Container(
-        width: 80,
-        height: 48,
-        padding: const EdgeInsets.all(4),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(4),
-          color: Colors.grey.shade100,
-          border: Border.all(color: Colors.grey.shade300, width: 1)
-        ),
-        child: Image.asset("assets/linkedin.png"),
-      ),
-    ],
-  );
 }

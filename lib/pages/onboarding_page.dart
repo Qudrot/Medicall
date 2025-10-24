@@ -43,12 +43,48 @@ class _OnboardingPageState extends State<OnboardingPage> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
+      
         spacing: 16,
         children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(24),
-            child: Image.asset(onboardingItemShow.asset, width: 300, height: 300),
+          Padding(padding: EdgeInsets.all(16)),
+          SizedBox(  //added sizebox to ensure skip is at a fixed position
+            height: 72,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                if (activeIndex < items.length - 1)
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).pushReplacementNamed("/signup");
+                    },
+                    child: Container(
+                      padding: const EdgeInsets.only(right: 16,),
+                      child: Text(
+                        "Skip >>",
+                        style: TextStyle(
+                          color: Colors.deepOrange,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                  ),
+              ],
+            ),
           ),
+          SizedBox(height: 56),
+          Container(
+            //padding: EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              
+              borderRadius: BorderRadius.circular(16)
+            ),
+            clipBehavior: Clip.hardEdge,
+              child: Image.asset(
+                onboardingItemShow.asset,
+                fit: BoxFit.cover,
+              ),
+            ),
           Text(
             onboardingItemShow.title,
             style: GoogleFonts.playfairDisplay(
@@ -62,8 +98,8 @@ class _OnboardingPageState extends State<OnboardingPage> {
             style: GoogleFonts.montserrat(fontSize: 14),
             textAlign: TextAlign.center,
           ),
-        
-         CustomIndicator(
+
+          CustomIndicator(
             indicatorCount: items.length,
             activeIndex: activeIndex,
           ),
