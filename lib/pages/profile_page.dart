@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:medicall/pages/notifications_page.dart';
+import 'package:medicall/provider/user_notifier.dart';
+import 'package:provider/provider.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -11,6 +13,7 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
       appBar: AppBar(
         title: Text("Profile"),
@@ -101,20 +104,21 @@ class _ProfilePageState extends State<ProfilePage> {
     return Container(
       decoration: BoxDecoration(shape: BoxShape.circle),
       clipBehavior: Clip.hardEdge,
-      child: Image.asset("assets/profile_pics.png", 
+      child: Image.asset("assets/profile_pic.png", 
       width: MediaQuery.sizeOf(context).width * 0.1, 
       height: MediaQuery.sizeOf(context).height * 0.1,
-      fit: BoxFit.cover,
+      //fit: BoxFit.cover,
       //alignment: Alignment.center,
       ),
     );
   }
 
   Widget _buildDetails() {
+    var userNotifier = Provider.of<Usernotifier>(context);
     return Column(
       children: [
         Text(
-          "Kudirat Ijeoma",
+         userNotifier.loggedInUser!.name,
           style: TextStyle(fontWeight: FontWeight.w300, fontSize: 13),
         ),
       ],

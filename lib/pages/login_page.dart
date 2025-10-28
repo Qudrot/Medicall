@@ -16,7 +16,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  //var regMail = ["kay@gmail.com", "yes@gmail.com"];
+  
 
   @override
   void dispose() {
@@ -47,10 +47,22 @@ class _LoginPageState extends State<LoginPage> {
               label: "Password",
               textEditingController: passwordController,
             ),
-            SizedBox(height: 16),
+            SizedBox(height: 8),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                TextButton(
+                  onPressed: (){
+                    Navigator.pushReplacementNamed(context, "/forgot");
+                  }, 
+                  child: Text("Forgot Password?",)),
+              ],
+            ),
+            SizedBox(height: 20),
             CustomButton(
               text: "Login",
               onPressed: () {
+                print(emailController.text);
                 if (emailController.text != "kay@gmail.com") {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(content: Text("Not a registered email")),
@@ -87,5 +99,8 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
     );
+    
   }
 }
+
+

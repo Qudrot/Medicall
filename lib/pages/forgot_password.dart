@@ -58,6 +58,8 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
     );
   }
 
+  
+
   Widget _buildOtpview() {
     return Column(
       spacing: 8,
@@ -77,6 +79,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
             }
           },
         ),
+        Text("$seconds seconds to request again"),
       ],
     );
   }

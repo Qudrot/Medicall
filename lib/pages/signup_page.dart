@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:medicall/provider/user_notifier.dart';
 import 'package:medicall/widgets/custom_button.dart';
 import 'package:medicall/widgets/custom_textfield.dart';
 import 'package:medicall/widgets/password_textfield.dart';
 import 'package:medicall/widgets/signup_login_bottom_text.dart';
 import 'package:medicall/widgets/signup_login_text.dart';
 import 'package:medicall/widgets/social_icon.dart';
+import 'package:provider/provider.dart';
+ 
 
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});
@@ -25,6 +28,7 @@ class _SignupPageState extends State<SignupPage> {
 
   @override
   Widget build(BuildContext context) {
+    var userNotifier = Provider.of<Usernotifier>(context);
     return Scaffold(
       body: SingleChildScrollView(
         padding: EdgeInsets.all(16),
@@ -56,8 +60,14 @@ class _SignupPageState extends State<SignupPage> {
             ),
             CustomButton(
               text: "Sign up",
+              
               onPressed: () {
-                if (usernameController.text != "KudiratIjeoma") {
+                
+                userNotifier.signup(usernameController.text, emailController.text, context);
+
+
+
+                /*if (usernameController.text != "KudiratIjeoma") {
                   ScaffoldMessenger.of(
                     context,
                   ).showSnackBar(SnackBar(content: Text("Invalid username")));
@@ -69,7 +79,7 @@ class _SignupPageState extends State<SignupPage> {
                   ).showSnackBar(SnackBar(content: Text("Invalid email")));
                   return;
                 }
-                Navigator.of(context).pushReplacementNamed("/home");
+                Navigator.of(context).pushReplacementNamed("/home"); */
               },
             ),
             SocialIcons(text: "Sign up using"),

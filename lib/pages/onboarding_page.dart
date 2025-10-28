@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:medicall/model/onbording_item.dart';
 import 'package:medicall/widgets/custom_indicator.dart';
 
 class OnboardingPage extends StatefulWidget {
@@ -40,70 +41,75 @@ class _OnboardingPageState extends State<OnboardingPage> {
     var onboardingItemShow = items[activeIndex];
 
     return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-      
-        spacing: 16,
-        children: [
-          Padding(padding: EdgeInsets.all(16)),
-          SizedBox(  //added sizebox to ensure skip is at a fixed position
-            height: 72,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                if (activeIndex < items.length - 1)
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.of(context).pushReplacementNamed("/signup");
-                    },
-                    child: Container(
-                      padding: const EdgeInsets.only(right: 16,),
-                      child: Text(
-                        "Skip >>",
-                        style: TextStyle(
-                          color: Colors.deepOrange,
-                          fontSize: 14,
-                          fontWeight: FontWeight.w600,
+      body: Padding(
+        padding: EdgeInsets.all(16),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+
+          spacing: 16,
+          children: [
+            Padding(padding: EdgeInsets.all(16)),
+            SizedBox(
+              //added sizebox to ensure skip is at a fixed position
+              height: 72,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  if (activeIndex < items.length - 1)
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).pushReplacementNamed("/signup");
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.only(right: 16),
+                        child: Text(
+                          "Skip >>",
+                          style: TextStyle(
+                            color: Colors.deepOrange,
+                            fontSize: 14,
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-              ],
+                ],
+              ),
             ),
-          ),
-          SizedBox(height: 56),
-          Container(
-            //padding: EdgeInsets.all(16),
-            decoration: BoxDecoration(
-              
-              borderRadius: BorderRadius.circular(16)
-            ),
-            clipBehavior: Clip.hardEdge,
+            SizedBox(height: 56),
+            Container(
+              //padding: EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(16),
+              ),
+              clipBehavior: Clip.hardEdge,
               child: Image.asset(
                 onboardingItemShow.asset,
+                width: MediaQuery.sizeOf(context).width * 1,
+                height: MediaQuery.sizeOf(context).height * 0.3,
                 fit: BoxFit.cover,
               ),
             ),
-          Text(
-            onboardingItemShow.title,
-            style: GoogleFonts.playfairDisplay(
-              fontWeight: FontWeight.w600,
-              fontSize: 32,
+            Text(
+              onboardingItemShow.title,
+              style: GoogleFonts.playfairDisplay(
+                fontWeight: FontWeight.w600,
+                fontSize: 32,
+              ),
+              textAlign: TextAlign.center,
             ),
-            textAlign: TextAlign.center,
-          ),
-          Text(
-            onboardingItemShow.subtitle,
-            style: GoogleFonts.montserrat(fontSize: 14),
-            textAlign: TextAlign.center,
-          ),
+            Text(
+              onboardingItemShow.subtitle,
+              style: GoogleFonts.montserrat(fontSize: 14),
+              textAlign: TextAlign.center,
+            ),
 
-          CustomIndicator(
-            indicatorCount: items.length,
-            activeIndex: activeIndex,
-          ),
-        ],
+            CustomIndicator(
+              indicatorCount: items.length,
+              activeIndex: activeIndex,
+            ),
+          ],
+        ),
       ),
 
       bottomNavigationBar: Padding(
@@ -142,14 +148,4 @@ class _OnboardingPageState extends State<OnboardingPage> {
   }
 }
 
-class OnboardingItem {
-  String title;
-  String subtitle;
-  String asset;
 
-  OnboardingItem({
-    required this.title,
-    required this.subtitle,
-    required this.asset,
-  });
-}
