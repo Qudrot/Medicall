@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:medicall/snackbar_services.dart';
 import 'package:medicall/widgets/custom_button.dart';
 import 'package:medicall/widgets/custom_textfield.dart';
 import 'package:otp_input/otp_input.dart';
@@ -73,9 +74,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
             if (otp == "23456") {
               Navigator.pushReplacementNamed(context, "/home");
             } else {
-              ScaffoldMessenger.of(
-                context,
-              ).showSnackBar(SnackBar(content: Text("Invalid OTP")));
+              SnackbarServices.showSnackBar(context, "Invalid OTP");
             }
           },
         ),

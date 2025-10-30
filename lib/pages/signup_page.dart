@@ -23,12 +23,13 @@ class _SignupPageState extends State<SignupPage> {
 
   @override
   void dispose() {
+    emailController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    var userNotifier = Provider.of<Usernotifier>(context);
+    var userNotifier = Provider.of<UserNotifier>(context);
     return Scaffold(
       body: SingleChildScrollView(
         padding: EdgeInsets.all(16),

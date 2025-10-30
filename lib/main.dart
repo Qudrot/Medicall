@@ -4,6 +4,7 @@ import 'package:medicall/pages/forgot_password.dart';
 import 'package:medicall/pages/login_page.dart';
 import 'package:medicall/pages/onboarding_page.dart';
 import 'package:medicall/pages/signup_page.dart';
+import 'package:medicall/pages/validation_page.dart';
 import 'package:medicall/provider/user_notifier.dart';
 import 'package:provider/provider.dart';
 
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context) => Usernotifier(),
+      create: (context) => UserNotifier(),
       child: MaterialApp(
         title: 'Save A Life',
         theme: ThemeData(
@@ -34,6 +35,7 @@ class MyApp extends StatelessWidget {
           "/login": (context) => LoginPage(),
           "/signup": (context) => SignupPage(),
           "/forgot": (context) => ForgotPasswordPage(),
+          "/validate": (context) => ValidationPage(),
           
         },
         initialRoute: "/o",

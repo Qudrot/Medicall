@@ -114,7 +114,7 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   Widget _buildDetails() {
-    var userNotifier = Provider.of<Usernotifier>(context);
+    var userNotifier = Provider.of<UserNotifier>(context);
     return Column(
       children: [
         Text(

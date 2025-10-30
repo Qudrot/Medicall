@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:medicall/provider/user_notifier.dart';
 import 'package:medicall/widgets/custom_button.dart';
 import 'package:medicall/widgets/custom_textfield.dart';
 import 'package:medicall/widgets/password_textfield.dart';
 import 'package:medicall/widgets/signup_login_bottom_text.dart';
 import 'package:medicall/widgets/signup_login_text.dart';
 import 'package:medicall/widgets/social_icon.dart';
+import 'package:provider/provider.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -26,6 +28,7 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
+    var userNotifier = Provider.of<UserNotifier>(context);
     return Scaffold(
       body: SingleChildScrollView(
         padding: EdgeInsets.all(16),
@@ -62,7 +65,10 @@ class _LoginPageState extends State<LoginPage> {
             CustomButton(
               text: "Login",
               onPressed: () {
-                print(emailController.text);
+                userNotifier.login(emailController.text, passwordController.text, context);
+
+
+                /*print(emailController.text);
                 if (emailController.text != "kay@gmail.com") {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(content: Text("Not a registered email")),
@@ -73,7 +79,7 @@ class _LoginPageState extends State<LoginPage> {
                 if (passwordController.text != "23456") {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(content: Text("Not a valid password, Try agin")),
-                  );
+                  ); 
 
                   //showDialog(context: context, builder: (context) {
                   //return AlertDialog(
@@ -84,7 +90,7 @@ class _LoginPageState extends State<LoginPage> {
 
                   return;
                 }
-                Navigator.of(context).pushReplacementNamed("/home");
+                Navigator.of(context).pushReplacementNamed("/home"); */
               },
             ),
             SizedBox(height: 24),
