@@ -37,7 +37,7 @@ dependencies:
   google_fonts: ^6.3.2
   font_awesome_flutter: ^10.11.0
   otp_input: ^1.0.4
-  provider: ^6.1.5+1
+  flutter_bloc: ^9.1.1
 
 dev_dependencies:
   flutter_test:

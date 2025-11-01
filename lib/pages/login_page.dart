@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:medicall/provider/user_notifier.dart';
+import 'package:medicall/provider/user_cubit.dart';
 import 'package:medicall/widgets/custom_button.dart';
 import 'package:medicall/widgets/custom_textfield.dart';
 import 'package:medicall/widgets/password_textfield.dart';

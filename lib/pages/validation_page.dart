@@ -1,3 +1,6 @@
+
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:medicall/snackbar_services.dart';
 import 'package:medicall/widgets/custom_button.dart';
@@ -12,6 +15,8 @@ class ValidationPage extends StatefulWidget {
 
 class _ValidationPageState extends State<ValidationPage> {
   bool otpState = false;
+  late Timer time;
+  int seconds = 10;
 
   @override
   Widget build(BuildContext context) {

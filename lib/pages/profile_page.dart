@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:medicall/pages/notifications_page.dart';
-import 'package:medicall/provider/user_notifier.dart';
+import 'package:medicall/provider/user_cubit.dart';
 import 'package:provider/provider.dart';
 
 class ProfilePage extends StatefulWidget {

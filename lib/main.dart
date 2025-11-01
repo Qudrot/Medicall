@@ -5,7 +5,8 @@ import 'package:medicall/pages/login_page.dart';
 import 'package:medicall/pages/onboarding_page.dart';
 import 'package:medicall/pages/signup_page.dart';
 import 'package:medicall/pages/validation_page.dart';
-import 'package:medicall/provider/user_notifier.dart';
+import "package:flutter_bloc/flutter_bloc.dart";
+import 'package:medicall/provider/user_cubit.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -18,8 +19,8 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => UserNotifier(),
+    return BlocProvider(
+      create: (context) => UserCubit(),
       child: MaterialApp(
         title: 'Save A Life',
         theme: ThemeData(
